@@ -26,11 +26,11 @@
         "APP_FALLBACK_LOCALE": "/tmp/config.php",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "DB_CONNECTION": "mysql",
-        "DB_HOST": "localhost",
+        "DB_HOST": "b48hhx2hhewstqbnbzv5-mysql.services.clever-cloud.com",
         "DB_PORT": "3306",
-        "DB_DATABASE": "nala_project",
-        "DB_USERNAME": "root",
-        "DB_PASSWORD": "",
+        "DB_DATABASE": "b48hhx2hhewstqbnbzv5",
+        "DB_USERNAME": "ukiovhiusp0kpvl7",
+        "DB_PASSWORD": "e3lflhIkdOBREppyzl3k",
         "SESSION_DRIVER": "cookie"
     },
     "outputDirectory": "public"
