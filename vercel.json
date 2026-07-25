@@ -1,0 +1,37 @@
+{
+    "version": 2,
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.5.0"
+        }
+    },
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        },
+        {
+            "src": "/img/(.*)",
+            "dest": "/public/img"
+        }
+    ],
+    "env": {
+        "APP_NAME": "Circlo",
+        "APP_ENV": "local",
+        "APP_KEY": "base64:4esHbz85PWoUeHr89Sp3oMNkQ8myTG/1i040rRcZ7cU=",
+        "APP_DEBUG": "false",
+        "APP_TIME_ZONE": "Asia/Jakarta",
+        "APP_URL": "https://circlo.id",
+        "APP_LOCALE": "id",
+        "APP_FALLBACK_LOCALE": "/tmp/config.php",
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "DB_CONNECTION": "mysql",
+        "DB_HOST": "localhost",
+        "DB_PORT": "3306",
+        "DB_DATABASE": "nala_project",
+        "DB_USERNAME": "root",
+        "DB_PASSWORD": "",
+        "SESSION_DRIVER": "cookie"
+    },
+    "outputDirectory": "public"
+}
