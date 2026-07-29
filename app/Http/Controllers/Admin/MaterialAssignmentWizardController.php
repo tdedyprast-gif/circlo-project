@@ -29,16 +29,13 @@ class MaterialAssignmentWizardController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            // Step 1: Material
             'course_session_id' => 'required|exists:course_sessions,id',
             'material_title' => 'required|string|max:255',
             'material_type' => ['required', new Enum(MaterialType::class)],
-            'content' => 'nullable|string',
+            'content_url' => 'nullable|url|max:65535',
             'body_text' => 'nullable|string',
-            'sort_order' => 'required|integer',
-            'is_optional' => 'nullable|boolean',
-
-            // Step 2: Assignment Toggle & Fields
+            'order' => 'required|integer|min:1',
+            'is_required' => 'nullable|boolean',
             'has_assignment' => 'nullable|boolean',
             'assignment_title' => 'required_if:has_assignment,1|nullable|string|max:255',
             'assignment_description' => 'nullable|string',
@@ -48,26 +45,24 @@ class MaterialAssignmentWizardController extends Controller
         ]);
 
         DB::transaction(function () use ($validated, $request) {
-            // 1. Simpan Material
             Material::create([
                 'course_session_id' => $validated['course_session_id'],
                 'title' => $validated['material_title'],
-                'content_type' => $validated['material_type'],
-                'content' => $validated['content'] ?? null,
+                'content_type' => strtoupper($validated['material_type']->value),
+                'content_url' => $validated['content_url'] ?? null,
                 'body_text' => $validated['body_text'] ?? null,
-                'sort_order' => $validated['sort_order'],
-                'is_optional' => $request->has('is_optional'),
+                'is_required' => $request->boolean('is_required', true),
+                'order' => $validated['order'],
             ]);
 
-            // 2. Simpan Assignment jika dicentang
-            if ($request->has('has_assignment') && $request->input('has_assignment') == '1') {
+            if ($request->boolean('has_assignment')) {
                 Assignment::create([
                     'course_session_id' => $validated['course_session_id'],
                     'title' => $validated['assignment_title'],
                     'description' => $validated['assignment_description'] ?? null,
                     'due_date' => $validated['due_date'] ?? null,
                     'max_score' => $validated['max_score'] ?? 100,
-                    'allow_offline_submission' => $request->has('allow_offline_submission'),
+                    'allow_offline_submission' => $request->boolean('allow_offline_submission', true),
                 ]);
             }
         });

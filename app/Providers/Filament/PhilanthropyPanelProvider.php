@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -17,6 +18,8 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
+use Filament\Navigation\MenuItem;
 
 class PhilanthropyPanelProvider extends PanelProvider
 {
@@ -24,6 +27,7 @@ class PhilanthropyPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->sidebarCollapsibleOnDesktop(true)
             ->id('philanthropy')
             ->path('philanthropy')
             ->login()->colors([
@@ -49,6 +53,7 @@ class PhilanthropyPanelProvider extends PanelProvider
                 'Grant',
                 'Course',
                 'Audit',
+                'Progess',
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -63,6 +68,22 @@ class PhilanthropyPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->plugin(FilamentSpatieRolesPermissionsPlugin::make());
+            // ->viteTheme('resources/css/filament/philanthropy/theme.css');
+    }
+
+    public function boot(): void
+    {
+        Filament::serving(function () {
+            Filament::registerUserMenuItems([
+                MenuItem::make()
+                    ->label('Settings')
+                    ->icon('heroicon-o-cog'),
+                MenuItem::make()
+                    ->label('Logout')
+                    ->icon('heroicon-o-arrow-left-on-rectangle'),
             ]);
+        });
     }
 }

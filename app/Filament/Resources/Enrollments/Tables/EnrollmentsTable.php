@@ -15,14 +15,11 @@ class EnrollmentsTable
                 TextColumn::make('user.name')
                     ->label('Peserta')
                     ->searchable(),
-                
-                // 1. Ubah cohort.id menjadi cohort.cohort_name agar menampilkan nama, bukan angka
+
                 TextColumn::make('cohort.cohort_name')
                     ->label('Cohort / Batch')
                     ->searchable(),
 
-                // 2. Gunakan dotted notation untuk mengambil data Course dari relasi Cohort
-                // (Ganti 'title' dengan 'course_name' jika kolom di tabel courses Anda bernama course_name)
                 TextColumn::make('cohort.course.title')
                     ->label('Course Name')
                     ->searchable()

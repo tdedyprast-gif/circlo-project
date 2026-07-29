@@ -20,9 +20,13 @@ class MaterialProgressResource extends Resource
 {
     protected static ?string $model = MaterialProgress::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowTrendingUp;
 
     protected static ?string $recordTitleAttribute = 'material-progress';
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Progess';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

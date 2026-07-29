@@ -2,14 +2,22 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
     public function up(): void
     {
+        if (DB::getDriverName() === 'sqlite') {
+            return;
+        }
+
+        if (! Schema::hasColumn('enrollments', 'course_id')) {
+            return;
+        }
+
         Schema::table('enrollments', function (Blueprint $table) {
-            // Hapus foreign key terlebih dahulu, lalu hapus kolomnya
             $table->dropForeign(['course_id']);
             $table->dropColumn('course_id');
         });
@@ -19,6 +27,7 @@ return new class extends Migration
     {
         Schema::table('enrollments', function (Blueprint $table) {
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
+            $table->unique(['user_id', 'course_id']);
         });
     }
 };

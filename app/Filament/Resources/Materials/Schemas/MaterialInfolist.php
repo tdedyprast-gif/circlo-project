@@ -12,7 +12,7 @@ class MaterialInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('course_sessions_id')
+                TextEntry::make('course_session_id')
                     ->numeric(),
                 TextEntry::make('title'),
                 TextEntry::make('content_type')

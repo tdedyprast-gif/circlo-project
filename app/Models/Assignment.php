@@ -31,7 +31,7 @@ class Assignment extends Model
 
     public function courseSession(): BelongsTo
     {
-        return $this->belongsTo(CourseSession::class, 'course_session_id');
+        return $this->belongsTo(CourseSession::class, 'course_sessions_id');
     }
 
     public function submissions(): HasMany

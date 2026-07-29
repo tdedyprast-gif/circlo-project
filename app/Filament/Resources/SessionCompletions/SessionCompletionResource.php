@@ -20,9 +20,13 @@ class SessionCompletionResource extends Resource
 {
     protected static ?string $model = SessionCompletion::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChartPie;
 
     protected static ?string $recordTitleAttribute = 'session-completion';
+
+    protected static \UnitEnum|string|null $navigationGroup = 'Progess';
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {

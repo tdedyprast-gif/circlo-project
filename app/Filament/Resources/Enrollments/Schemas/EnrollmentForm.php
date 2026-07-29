@@ -18,6 +18,7 @@ class EnrollmentForm
         return $schema
             ->components([
                 Select::make('user_id')
+                    ->multiple()
                     ->relationship('user', 'name')
                     ->required()
                     ->live(),

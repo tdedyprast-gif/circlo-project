@@ -16,9 +16,6 @@ class MaterialsTable
     {
         return $table
             ->columns([
-                TextColumn::make('course_sessions_id')
-                    ->numeric()
-                    ->sortable(),
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('content_type')
