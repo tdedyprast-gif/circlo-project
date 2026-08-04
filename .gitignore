@@ -2,6 +2,10 @@
 .DS_Store
 .env.backup
 .env.production
+.env.example
+.env.local
+.env.testing
+.env.old
 .phpactor.json
 .phpunit.result.cache
 /.codex
@@ -25,4 +29,3 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 .vercel
-.env*
