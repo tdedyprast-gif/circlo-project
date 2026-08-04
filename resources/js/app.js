@@ -1,5 +1,1 @@
-import tailwindcss from "@tailwindcss/vite";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+import '../css/app.css';
