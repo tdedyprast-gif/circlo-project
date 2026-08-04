@@ -2,8 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-require __DIR__ . '/../public/index.php';
-
 // Buat direktori temporary wajib Laravel di /tmp (karena Vercel read-only)
 $directories = [
     '/tmp/storage/app',
