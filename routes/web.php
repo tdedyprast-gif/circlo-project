@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\MaterialAssignmentWizardController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('philanthropy');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
