@@ -11,6 +11,10 @@
             "dest": "/public/build/$1"
         },
         {
+            "src": "/vendor/(.*)",
+            "dest": "/public/vendor/$1"
+        },
+        {
             "src": "/img/(.*)",
             "dest": "/public/img/$1"
         },
